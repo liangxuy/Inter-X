@@ -37,7 +37,7 @@ If you find the Inter-X dataset is useful for your research, please cite us:
 ```
 @article{xu2023inter,
   title={Inter-X: Towards Versatile Human-Human Interaction Analysis},
-  author={Xu, Liang and Lv, Xintao and Yan, Yichao and Jin, Xin and Wu, Shuwen and Xu, Congsheng and Liu, Yifan and Zhou, Yizhou and Rao, Fengyun and Sheng, Xingdong and others},
+  author={Xu, Liang and Lv, Xintao and Yan, Yichao and Jin, Xin and Wu, Shuwen and Xu, Congsheng and Liu, Yifan and Zhou, Yizhou and Rao, Fengyun and Sheng, Xingdong and Liu, Yunhui and Zeng, Wenjun and Yang, Xiaokang},
   journal={arXiv preprint arXiv:2312.16051},
   year={2023}
 }
