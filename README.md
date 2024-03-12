@@ -21,6 +21,7 @@ This repository contains the content of the following paper:
 > <sup>1</sup> Shanghai Jiao Tong University <sup>2</sup> Eastern Institute of Technology, Ningbo <sup>3</sup>WeChat, Tencent Inc. <sup>4</sup>Lenovo
 
 ## News
+- [2024.02.27] Inter-X is accepted by CVPR 2024!
 - [2023.12.27] We release the paper and project page of Inter-X.
 
 
@@ -28,3 +29,16 @@ This repository contains the content of the following paper:
 
 ## Dataset Comparison
 ![](./assets/dataset.jpg)
+
+
+## Citation
+If you find the Inter-X dataset is useful for your research, please cite us:
+
+```
+@article{xu2023inter,
+  title={Inter-X: Towards Versatile Human-Human Interaction Analysis},
+  author={Xu, Liang and Lv, Xintao and Yan, Yichao and Jin, Xin and Wu, Shuwen and Xu, Congsheng and Liu, Yifan and Zhou, Yizhou and Rao, Fengyun and Sheng, Xingdong and others},
+  journal={arXiv preprint arXiv:2312.16051},
+  year={2023}
+}
+```
