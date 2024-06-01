@@ -21,6 +21,7 @@ This repository contains the content of the following paper:
 > <sup>1</sup> Shanghai Jiao Tong University <sup>2</sup> Eastern Institute of Technology, Ningbo <sup>3</sup>WeChat, Tencent Inc. <sup>4</sup>Lenovo
 
 ## News
+- [2024.06.02] We release the code of fitting SMPL-X parameters from the MoCap data [here](https://github.com/LvXinTao/Mocap-to-SMPLX).
 - [2024.04.16] Release the Inter-X dataset, with SMPL-X parameters, skeleton parameters, and the annotations of textual descriptions, action settings, interaction order and relationships and personalities.
 - [2024.02.27] Inter-X is accepted by CVPR 2024!
 - [2023.12.27] We release the paper and project page of Inter-X.
