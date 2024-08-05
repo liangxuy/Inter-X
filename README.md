@@ -27,7 +27,7 @@ This repository contains the content of the following paper:
 - [2023.12.27] We release the paper and project page of Inter-X.
 
 ## TODO
-- [ ] Release the data pre-processing code.
+- [ ] Release the data pre-processing code (We will release the code this week!).
 - [x] Release the scripts to visualize the dataset.
 - [x] Release the whole dataset and annotations.
 
