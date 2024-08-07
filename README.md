@@ -21,13 +21,15 @@ This repository contains the content of the following paper:
 > <sup>1</sup> Shanghai Jiao Tong University <sup>2</sup> Eastern Institute of Technology, Ningbo <sup>3</sup>WeChat, Tencent Inc. <sup>4</sup>Lenovo
 
 ## News
+- [2024.08.07] We release the data preprocessing code and the processed data.
 - [2024.06.02] We release the code of fitting SMPL-X parameters from the MoCap data [here](https://github.com/LvXinTao/Mocap-to-SMPLX).
 - [2024.04.16] Release the Inter-X dataset, with SMPL-X parameters, skeleton parameters, and the annotations of textual descriptions, action settings, interaction order and relationships and personalities.
 - [2024.02.27] Inter-X is accepted by CVPR 2024!
 - [2023.12.27] We release the paper and project page of Inter-X.
 
 ## TODO
-- [ ] Release the data pre-processing code (We will release the code this week!).
+- [ ] Release the text-to-motion code and checkpoints (We will release the code this week!).
+- [x] Release the data pre-processing code.
 - [x] Release the scripts to visualize the dataset.
 - [x] Release the whole dataset and annotations.
 
@@ -143,16 +145,97 @@ skeleton = np.load('skeletons/G001T000A000R000/P1.npy') # skeleton.shape: (T, 64
 ```
 
 ## Data preprocessing
-We will update this part as soon as possible.
+
+We directly use the SMPL-X parameters to train the model, you can download the processed motion data, text data through the original Google drive link or the Baidu Netdisk.
+
+```
+processed_data
+├── glove
+│   ├── hhi_vab_data.npy
+│   ├── hhi_vab_idx.pkl
+│   └── hhi_vab_words.pkl
+├── motions
+│   ├── test.h5
+│   ├── train.h5
+│   └── val.h5
+└── texts_processed
+    ├── G001T000A000R000.txt
+    ├── G001T000A000R001.txt
+    └── ......
+```
+
+Or, the data preprocessing code is shown as follows:
+
+<details>
+  <summary>Commands for preprocessing the Inter-X dataset for training and evaluation:</summary>
+
+  1. Please clone the repository by the following command:
+      ```
+      git clone https://github.com/liangxuy/Inter-X.git
+      cd Inter-X/preprocessing
+      ```
+      
+  2. Setup the environment
+      * Install ffmpeg (if not already installed)
+        ```
+        sudo apt update
+        sudo apt install ffmpeg
+        ```
+      * Setup conda environment
+        ```
+        conda env create -f environment.yml
+        conda activate inter-x
+        python -m spacy download en_core_web_sm
+        pip install git+https://github.com/openai/CLIP.git
+        ```
+        You can also manually download and install en_core_web_sm by download the [en_core_web_sm-2.3.0.tar.gz](https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-2.3.0/en_core_web_sm-2.3.0.tar.gz) and then run `pip install en_core_web_sm-2.3.0.tar.gz`.
+
+  3. Prepare the `motions.zip`, `texts.zip`, `splits`, etc.
+
+  4. Run the commands one by one:
+
+      * 1. Motion data processing, we downsample to 30 fps for training and evaluation
+
+        ```
+        python 1_prepare_data.py
+        ```
+      * 2. Split train, test and val
+
+        ```
+        python 2_split_train_val.py
+        ```
+      * 3. Processing text annotations
+      
+        Download the [glove.6B.zip](https://nlp.stanford.edu/data/glove.6B.zip) and set the path of `glove_file`.
+        ```
+        python 3_text_process.py
+        ```
+
+      * 4. For human reaction generation
+
+        ```
+        python 4_reaction_generation.py
+        ```
+</details>
+
+
+## Text to Motion
+
+
+
+## Action to Motion
+
+
 
 ## Citation
 If you find the Inter-X dataset is useful for your research, please cite us:
 
 ```
-@inproceedings{xu2023inter,
-  title={Inter-X: Towards Versatile Human-Human Interaction Analysis},
-  author={Xu, Liang and Lv, Xintao and Yan, Yichao and Jin, Xin and Wu, Shuwen and Xu, Congsheng and Liu, Yifan and Zhou, Yizhou and Rao, Fengyun and Sheng, Xingdong and Liu, Yunhui and Zeng, Wenjun and Yang, Xiaokang},
+@inproceedings{xu2024inter,
+  title={Inter-x: Towards versatile human-human interaction analysis},
+  author={Xu, Liang and Lv, Xintao and Yan, Yichao and Jin, Xin and Wu, Shuwen and Xu, Congsheng and Liu, Yifan and Zhou, Yizhou and Rao, Fengyun and Sheng, Xingdong and others},
   booktitle={CVPR},
+  pages={22260--22271},
   year={2024}
 }
 ```
