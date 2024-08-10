@@ -21,6 +21,7 @@ This repository contains the content of the following paper:
 > <sup>1</sup> Shanghai Jiao Tong University <sup>2</sup> Eastern Institute of Technology, Ningbo <sup>3</sup>WeChat, Tencent Inc. <sup>4</sup>Lenovo
 
 ## News
+- [2024.08.10] We release the training and evaluation codes of text2motion, and the checkpoints.
 - [2024.08.07] We release the data preprocessing code and the processed data.
 - [2024.06.02] We release the code of fitting SMPL-X parameters from the MoCap data [here](https://github.com/LvXinTao/Mocap-to-SMPLX).
 - [2024.04.16] Release the Inter-X dataset, with SMPL-X parameters, skeleton parameters, and the annotations of textual descriptions, action settings, interaction order and relationships and personalities.
@@ -28,7 +29,8 @@ This repository contains the content of the following paper:
 - [2023.12.27] We release the paper and project page of Inter-X.
 
 ## TODO
-- [ ] Release the text-to-motion code and checkpoints (We will release the code this week!).
+- [ ] Release the action-to-motion code and checkpoints.
+- [x] Release the text-to-motion code and checkpoints.
 - [x] Release the data pre-processing code.
 - [x] Release the scripts to visualize the dataset.
 - [x] Release the whole dataset and annotations.
@@ -221,11 +223,62 @@ Or, the data preprocessing code is shown as follows:
 
 ## Text to Motion
 
+The code of this part is under `evaluation/text2motion`. We follow the work of [text-to-motion](https://github.com/EricGuo5513/text-to-motion) to train and evaluate the text2motion model. You can build the environment as the original repository and then setup the data folder to `./dataset/inter-x` with a soft link.
+
+<details>
+  <summary>Commands for training and evaluating the text2motion model:</summary>
+
+We have provided the trained models on the dataset Google Drive link. You can download the checkpoints and put them to `checkpoints/hhi` to **skip the step 1~4** and organize them as:
+
+```
+checkpoints/hhi
+├── Comp_v6_KLD01
+│   ├── model
+│   │   └── latest.tar
+│   └── opt.txt
+├── Decomp_SP001_SM001_H512
+│   └── model
+│       └── latest.tar
+├── length_est_bigru
+│   └── model
+│       └── latest.tar
+└── text_mot_match
+    └── model
+        └── finest.tar
+```
+
+1. Training motion autoencoder
+    ```
+    python train_decomp_v3.py --name Decomp_SP001_SM001_H512 --gpu_id 0 --window_size 24 --dataset_name hhi
+    ```
+
+2. Training text2length model
+    ```
+    python train_length_est.py --name length_est_bigru --gpu_id 0 --dataset_name hhi
+    ```
+
+3. Training text2motion model
+    ```
+    python train_length_est.py --name length_est_bigru --gpu_id 0 --dataset_name hhi
+    ```
+
+4. Training motion & text feature extractors
+    ```
+    python train_tex_mot_match.py --name text_mot_match --gpu_id 0 --batch_size 8 --dataset_name hhi
+    ```
+
+5. Quantitative Evaluations
+    ```
+    python final_evaluation.py
+    ```
+    The statistical results will be saved to ./hhi_evaluation.log.
+
+</details>
 
 
 ## Action to Motion
 
-
+Coming soon!
 
 ## Citation
 If you find the Inter-X dataset is useful for your research, please cite us:
