@@ -259,7 +259,7 @@ checkpoints/hhi
 
 3. Training text2motion model
     ```
-    python train_length_est.py --name length_est_bigru --gpu_id 0 --dataset_name hhi
+    python train_comp_v6.py --name Comp_v6_KLD01 --gpu_id 0 --lambda_kld 0.01 --dataset_name hhi
     ```
 
 4. Training motion & text feature extractors
